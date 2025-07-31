@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lung Cancer Detection</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <body onload="checkLoginStatus()">
+        <header>
+            <h1>Lung Cancer Detection System</h1>
+            <div class="header-buttons">
+                <button id="login-btn" onclick="showLoginForm()">Login</button>
+                <button id="signup-btn" onclick="showSignupForm()">Signup</button>
+                <button id="logout-btn" onclick="logout()" style="display: none;">Logout</button>
+            </div>
+        </header>
+
+    <main>
+        <!-- Upload Section -->
+        <section id="upload-section" style="display: none;">
+            <h2>Upload Lung Cancer Image</h2>
+            <div class="upload-container">
+                <form id="upload-form">
+                    <input type="file" id="imageUpload" name="image" accept="image/*" required>
+                    <button type="submit">Upload</button>
+                </form>
+            </div>
+
+            <p id="upload-message"></p>
+            <img id="uploaded-image">
+            
+            
+            <h3>Prediction Result:</h3>
+            <p id="prediction-result" class="result-text"></p>
+            
+            <h3></h3>
+            <p id="accuracy-result" class="result-text"></p>
+        </section>
+
+        <!-- Authentication Forms -->
+        <section id="form-section">
+            <div class="auth-container">
+                <!-- Login Form -->
+                <form id="login-form" class="auth-form" style="display: none;">
+                    <h3>Login</h3>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                    <button type="submit" onclick="login(event)">Login</button>
+                    <p><a href="#" onclick="showForgotPasswordForm()">Forgot Password?</a></p>
+                    <p>Don't have an account? <a href="#" onclick="showSignupForm()">Sign up</a></p>
+                </form>
+
+                
+                <!-- Signup Form -->
+                <form id="signup-form" class="auth-form" style="display: none;">
+                    <h3>Signup</h3>
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" required>
+
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" required>
+                    
+                    <button type="submit" onclick="signup(event)">Signup</button>
+                    <p id="signup-message" style="color: red;"></p> 
+                    <p>Existing account? <a href="#" onclick="showLoginForm()">Login</a></p>
+                </form>
+
+                <!-- Forgot Password Form -->
+                <form id="forgot-password-form" class="auth-form" style="display: none;" onsubmit="forgotPassword(event)">
+                    <h3>Forgot Password</h3>
+                    <label for="forgot-email">Enter your email</label>
+                    <input type="email" id="forgot-email" required>
+                    <button type="submit">Submit</button>
+                    <p><a href="#" onclick="showLoginForm()">Back to Login</a></p>
+                </form>
+
+                <!-- Reset Password Form -->
+                <form id="reset-password-form" class="auth-form" style="display: none;" onsubmit="resetPassword(event)">
+                    <h3>Reset Password</h3>
+                    <label for="reset-token">Enter your reset token</label>
+                    <input type="text" id="reset-token" required>
+                    <label for="new-password">New Password</label>
+                    <input type="password" id="new-password" required>
+                    <button type="submit">Reset Password</button>
+                    <p><a href="#" onclick="showLoginForm()">Back to Login</a></p>
+                </form>
+            </div>
+        </section>
+    </main>
+    <div id="result"></div> 
+    <script src="script.js"></script>
+</body>
